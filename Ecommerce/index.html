@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechGadgets</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary-color: #00ffcc;
+            --bg-color: #121212;
+            --text-color: #ffffff;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: var(--text-color);
+        }
+        /* HERO SECTION */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column-reverse;
+            text-align: center;
+            padding: 40px;
+        }
+        .hero-text {
+            max-width: 90%;
+        }
+        .hero-image {
+            width: 100%;
+            height: 250px;
+            background: url('images/gad.jpg') center/cover no-repeat;
+        }
+        @media (min-width: 768px) {
+            .hero {
+                flex-direction: row;
+                text-align: left;
+                padding: 60px;
+            }
+            .hero-text {
+                max-width: 50%;
+            }
+            .hero-image {
+                width: 50%;
+                height: 400px;
+            }
+        }
+
+        /* PRODUCT SECTION */
+        .product-section {
+            background: #1a1a1a;
+            padding: 50px 20px;
+            text-align: center;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            margin: auto;
+        }
+        .product-card {
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            text-align: center;
+        }
+        .product-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 255, 204, 0.5);
+        }
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .add-to-cart {
+            background: var(--primary-color);
+            color: #121212;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+            display: inline-block;
+        }
+        .add-to-cart:hover {
+            background: #00ccaa;
+        }
+
+        /* CART SECTION */
+        .cart-section {
+            background: #1a1a1a;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #222;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .cart-item img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .cart-item-details {
+            flex-grow: 1;
+            margin-left: 10px;
+            text-align: left;
+        }
+        .cart-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .cart-controls button {
+            background: var(--primary-color);
+            color: #121212;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .checkout-btn {
+            background: var(--primary-color);
+            color: #121212;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .checkout-btn:hover {
+            background: #00ccaa;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="bg-[#121212] text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="text-2xl font-bold text-[#00ffcc]">TechGadgets</a>
+
+            <!-- Search Bar -->
+            <input type="text" id="search" class="hidden md:block bg-gray-800 border border-[#00ffcc] px-3 py-2 rounded" placeholder="Search products...">
+
+            <!-- Navigation -->
+            <nav class="hidden md:flex space-x-6">
+                <a href="#" class="hover:text-[#00ffcc]">Home</a>
+                <a href="#product" class="hover:text-[#00ffcc]">Products</a>
+                <a href="#" class="hover:text-[#00ffcc]">About</a>
+                <a href="contact.html" class="hover:text-[#00ffcc]">Contact</a>
+            </nav>
+
+            <!-- Buttons -->
+            <div class="hidden md:flex space-x-4">
+                <a href="login.html" class="px-4 py-2 bg-[#00ffcc] text-black rounded">Sign Up</a>
+                <a href="login.html" class="px-4 py-2 border border-[#00ffcc] rounded">Login</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-toggle" class="md:hidden text-[#00ffcc]">
+                ☰
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden flex flex-col space-y-4 bg-[#121212] p-4">
+            <a href="#" class="text-[#00ffcc]">Home</a>
+            <a href="#product" class="text-[#00ffcc]">Products</a>
+            <a href="#" class="text-[#00ffcc]">About</a>
+            <a href="contact.html" class="text-[#00ffcc]">Contact</a>
+            <a href="login.html" class="px-4 py-2 bg-[#00ffcc] text-black rounded">Sign Up</a>
+            <a href="login.html" class="px-4 py-2 border border-[#00ffcc] rounded">Login</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1 class="text-4xl font-bold text-black">Discover the Latest in Tech</h1>
+            <p class="mt-4 text-gray-700">
+                Welcome to <strong>TechGadgets</strong>, your one-stop destination for the latest and greatest in technology.
+                From smartphones to smartwatches, we have everything to keep you ahead in the tech world.
+            </p>
+            <a href="#product" class="mt-6 inline-block px-6 py-3 bg-[#00ffcc] text-black font-bold rounded shadow-md hover:shadow-lg transition">
+                Shop Now
+            </a>
+        </div>
+        <div class="hero-image"></div> <!-- Blurred Image -->
+    </section>
+
+    <!-- PRODUCT SHOWCASE SECTION -->
+    <section class="product-section" id="product">
+        <h2 class="text-3xl font-bold text-[#00ffcc] mb-6">Featured Products</h2>
+        <div class="product-grid">
+            <!-- Product Cards -->
+            <div class="product-card">
+                <img src="images/watch.png" alt="Smartwatch" class="product-image">
+                <div class="product-name">Smartwatch</div>
+                <div class="product-price">$699</div>
+                <button class="add-to-cart" onclick="addToCart('Smartphone', 699, 'images/watch.png')">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="images/headphones.png" alt="Headphones" class="product-image">
+                <div class="product-name">Headphones</div>
+                <div class="product-price">$999</div>
+                <button class="add-to-cart" onclick="addToCart('Laptop', 999, 'images/headphones.png')">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="images/camera.png" alt="camera" class="product-image">
+                <div class="product-name">Camera</div>
+                <div class="product-price">$299</div>
+                <button class="add-to-cart" onclick="addToCart('Smartwatch', 299, 'images/camera.png')">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- CART SECTION -->
+    <section class="cart-section">
+        <h2 class="text-3xl font-bold text-[#00ffcc] mb-4">Shopping Cart</h2>
+        <div id="cart-items"></div>
+        <button class="checkout-btn" onclick="checkout()">Checkout</button>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+<section class="testimonials-section bg-gray-100 py-12 text-black text-center">
+    <h2 class="text-3xl font-bold text-[#121212] mb-6">What Our Customers Say</h2>
+
+    <div class="relative mx-auto max-w-3xl overflow-hidden">
+        <div id="testimonial-slider" class="flex transition-transform duration-500 ease-in-out">
+            <div class="testimonial-card w-full flex-shrink-0 p-6 text-center">
+                <img src="images/testimonial 1.jpg" alt="Customer 1" class="mx-auto w-16 h-16 rounded-full">
+                <h3 class="text-lg font-bold mt-3">Emily Johnson</h3>
+                <p class="text-gray-600">"TechGadgets has the best deals! My new laptop arrived on time and works flawlessly."</p>
+                <div class="text-yellow-500 mt-2">★★★★★</div>
+            </div>
+
+            <div class="testimonial-card w-full flex-shrink-0 p-6 text-center">
+                <img src="images/testimonial 2.jpg" alt="Customer 2" class="mx-auto w-16 h-16 rounded-full">
+                <h3 class="text-lg font-bold mt-3">Michael Smith</h3>
+                <p class="text-gray-600">"Great customer service and amazing products! Highly recommended for tech lovers."</p>
+                <div class="text-yellow-500 mt-2">★★★★★</div>
+            </div>
+
+            <div class="testimonial-card w-full flex-shrink-0 p-6 text-center">
+                <img src="images/testimonial 3.jpg" alt="Customer 3" class="mx-auto w-16 h-16 rounded-full">
+                <h3 class="text-lg font-bold mt-3">Sophia Martinez</h3>
+                <p class="text-gray-600">"I love my new smartwatch! The quality and performance exceeded my expectations."</p>
+                <div class="text-yellow-500 mt-2">★★★★★</div>
+            </div>
+
+        </div>
+
+        <button id="prev" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-300 p-2 rounded-full">
+            ◀
+        </button>
+        <button id="next" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-300 p-2 rounded-full">
+            ▶
+        </button>
+    </div>
+</section>
+
+    <!-- FOOTER -->
+<footer class="bg-[#121212] text-white py-10 mt-12">
+    <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left px-6">
+        
+        <div>
+            <h3 class="text-lg font-bold text-[#00ffcc] mb-3">Quick Links</h3>
+            <ul class="space-y-2">
+                <li><a href="#" class="hover:text-[#00ffcc] transition">Home</a></li>
+                <li><a href="#" class="hover:text-[#00ffcc] transition">Products</a></li>
+                <li><a href="#" class="hover:text-[#00ffcc] transition">About Us</a></li>
+                <li><a href="#" class="hover:text-[#00ffcc] transition">Contact</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3 class="text-lg font-bold text-[#00ffcc] mb-3">Contact Us</h3>
+            <p class="text-gray-400">123 Tech Street, Silicon Valley, CA</p>
+            <p class="text-gray-400">Email: <a href="mailto:support@techgadgets.com" class="hover:text-[#00ffcc] transition">support@techgadgets.com</a></p>
+            <p class="text-gray-400">Phone: <a href="tel:+1234567890" class="hover:text-[#00ffcc] transition">+1 234 567 890</a></p>
+        </div>
+
+        <div>
+            <h3 class="text-lg font-bold text-[#00ffcc] mb-3">Follow Us</h3>
+            <div class="flex justify-center md:justify-start space-x-4">
+                <a href="#" class="text-[#00ffcc] text-2xl hover:text-white transition"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="text-[#00ffcc] text-2xl hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-[#00ffcc] text-2xl hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-[#00ffcc] text-2xl hover:text-white transition"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="text-center text-gray-400 mt-8">
+        <p>© 2024 TechGadgets. All Rights Reserved.</p>
+    </div>
+</footer>
+
+
+    <script>
+        let cart = [];
+
+        function addToCart(name, price, image) {
+            let existingProduct = cart.find(item => item.name === name);
+
+            if (existingProduct) {
+                existingProduct.quantity += 1;
+            } else {
+                cart.push({ name, price, image, quantity: 1 });
+            }
+
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItemsContainer = document.getElementById("cart-items");
+            cartItemsContainer.innerHTML = "";
+
+            cart.forEach((item, index) => {
+                const cartItem = document.createElement("div");
+                cartItem.classList.add("cart-item");
+                cartItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="cart-item-details">
+                        <div class="product-name">${item.name}</div>
+                        <div class="product-price">$${item.price}</div>
+                    </div>
+                    <div class="cart-controls">
+                        <button onclick="changeQuantity(${index}, -1)">-</button>
+                        <span>${item.quantity}</span>
+                        <button onclick="changeQuantity(${index}, 1)">+</button>
+                        <button onclick="removeFromCart(${index})">❌</button>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(cartItem);
+            });
+        }
+
+        function changeQuantity(index, change) {
+            if (cart[index].quantity + change <= 0) {
+                cart.splice(index, 1);
+            } else {
+                cart[index].quantity += change;
+            }
+            updateCart();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function checkout() {
+            alert("Proceeding to checkout!");
+        }
+
+        // testimonials slider
+        const slider = document.getElementById("testimonial-slider");
+    const prevBtn = document.getElementById("prev");
+    const nextBtn = document.getElementById("next");
+
+    let index = 0;
+    const totalSlides = slider.children.length;
+    
+    function updateSlide() {
+        slider.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    function nextSlide() {
+        index = (index + 1) % totalSlides;
+        updateSlide();
+    }
+
+    function prevSlide() {
+        index = (index - 1 + totalSlides) % totalSlides;
+        updateSlide();
+    }
+
+    nextBtn.addEventListener("click", nextSlide);
+    prevBtn.addEventListener("click", prevSlide);
+
+    // Auto-slide every 5 seconds
+    setInterval(nextSlide, 5000);
+    </script>
+
+
+</body>
+</html>

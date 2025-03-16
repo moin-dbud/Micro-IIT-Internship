@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechGadgets - Login & Signup</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #121212; color: white; font-family: Arial, sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #00ffcc 0%, #121212 100%); }
+        .form-container { background: #1a1a1a; padding: 2rem; border-radius: 10px; width: 100%; }
+        .input-field { background: #222; border: 1px solid #00ffcc; padding: 10px; border-radius: 5px; width: 100%; }
+        .input-field:focus { outline: none; border-color: white; }
+        .btn { background: #00ffcc; color: #121212; padding: 10px; border-radius: 5px; font-weight: bold; width: 100%; }
+        .btn:hover { background: #00ccaa; }
+        .social-btn { display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid #00ffcc; padding: 8px; border-radius: 5px; cursor: pointer; width: 100%; }
+
+        /* Floating Animation */
+        .floating-image {
+            animation: floatAnimation 3s ease-in-out infinite;
+            transition: opacity 1s ease-in-out;
+        }
+
+        @keyframes floatAnimation {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="flex items-center justify-center min-h-screen p-4">
+    <div class="w-full max-w-4xl flex flex-col md:flex-row shadow-lg rounded-lg overflow-hidden">
+        <!-- Form Section -->
+        <div class="w-full md:w-1/2 p-6 md:p-10 form-container">
+            <h2 class="text-3xl font-bold text-center mb-5">Sign Up</h2>
+            <p class="text-gray-400 text-center mb-5">Join TechGadgets today!</p>
+            
+            <form>
+                <input type="email" placeholder="Email" class="input-field mb-3" required>
+                <input type="password" placeholder="Password" class="input-field mb-3" required>
+                <input type="password" placeholder="Confirm Password" class="input-field mb-3" required>
+                
+                <div class="flex items-center text-sm mb-4">
+                    <input type="checkbox" class="mr-2">
+                    <span>By signing up, you accept our <a href="#" class="text-[#00FFCC]">Terms & Privacy</a></span>
+                </div>
+                
+                <button type="submit" class="btn">Sign Up</button>
+            </form>
+
+            <p class="text-center text-gray-400 my-4">Or continue with</p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <div class="social-btn"><img src="https://img.icons8.com/color/30/google-logo.png"/> Google</div>
+                <div class="social-btn"><img src="https://img.icons8.com/color/30/facebook-new.png"/> Facebook</div>
+            </div>
+
+            <p class="text-center text-gray-400 mt-4">Already have an account? <a href="#" class="text-[#00FFCC]">Log in</a></p>
+        </div>
+
+        <!-- Image Section with Floating & Slideshow Animation -->
+        <div class="w-full md:w-1/2 gradient-bg flex items-center justify-center p-6">
+            <img id="tech-image" src="images/watch.png" 
+                 alt="Tech Image" class="rounded-lg floating-image w-full max-w-sm">
+        </div>
+    </div>
+</div>
+
+<script>
+    // Array of tech gadget images
+    const images = [
+        "images/buds.webp",
+        "images/camera.png",
+        "images/headphones.png",
+    ];
+
+    let currentIndex = 0;
+    const imgElement = document.getElementById("tech-image");
+
+    function changeImage() {
+        currentIndex = (currentIndex + 1) % images.length; // Loop through images
+        imgElement.style.opacity = "0"; // Fade out effect
+        setTimeout(() => {
+            imgElement.src = images[currentIndex]; // Change image
+            imgElement.style.opacity = "1"; // Fade in effect
+        }, 1000);
+    }
+
+    setInterval(changeImage, 5000); // Change image every 5 seconds
+</script>
+
+</body>
+</html>
