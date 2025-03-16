@@ -62,8 +62,8 @@ This repository is open-source and available for learning purposes.
 ### 🌟 Connect With Me
 If you have any feedback or suggestions, feel free to connect with me on **LinkedIn** or GitHub!
 
-🔗 **GitHub:** [your-username](https://github.com/moin-dbud)  
-🔗 **LinkedIn:** [Your LinkedIn Profile](https://in.linkedin.com/in/moin-sameer-sheikh-2a7690335)
+🔗 **GitHub:** [Moin-dbud](https://github.com/moin-dbud)  
+🔗 **LinkedIn:** [Moin Sameer Sheikh](https://in.linkedin.com/in/moin-sameer-sheikh-2a7690335)
 
 ---
 
